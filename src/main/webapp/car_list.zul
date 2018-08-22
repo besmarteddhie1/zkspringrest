@@ -1,0 +1,80 @@
+<window title="ZK Spring Hibernate - CRUD" width="800px" border="normal"
+	id="windowSearchCar"
+	apply="com.rabia.ui.controller.CarController">
+	<groupbox id="groupboxSearch" closable="false">
+		<hbox align="center">
+			Keyword:
+			<textbox id="keywordBox" />
+			<button id="searchButton" label="Search" />
+			<button id="clearButton" label="Clear" />
+		</hbox>
+	</groupbox>
+	<groupbox id="groupboxCarList" closable="false">
+		<caption label="Car List" />
+		<grid id="carGrid" emptyMessage="No car found in the result">
+			<columns>
+				<column label="${labels.car.model.label}" />
+				<column label="${labels.car.make.label}" />
+				<column label="${labels.car.price.label}" />
+				<column label="Action" align="center" />
+			</columns>
+			<template name="model">
+				<row>
+					<label value="${each.model}" />
+					<label value="${each.make}" />
+					<label value="${each.price}" />
+					<hbox>
+						<button label="view"
+							forward="onButtonViewClick(${each})" />
+						<button label="delete"
+							forward="onButtonDeleteClick(${each})" />
+					</hbox>
+				</row>
+			</template>
+		</grid>
+		<paging id="carPaging"/>
+	</groupbox>
+	<groupbox id="groupboxCarDetails" closable="false">
+		<caption label="Detail" />
+		<grid sclass="form-entry">
+			<columns>
+				<column width="200px" />
+				<column />
+			</columns>
+			<rows>
+				<row>
+					<label value="Model" />
+					<textbox id="textboxModel" mold="rounded"
+						width="200px" maxlength="150" />
+				</row>
+				<row>
+					<label value="Make" />
+					<textbox id="textboxMake" mold="rounded"
+						width="200px" maxlength="150" />
+				</row>
+				<row>
+					<label value="Price" />
+					<textbox id="textboxPrice" mold="rounded"
+						width="200px" maxlength="15" />
+				</row>
+				<row>
+					<label value="Description" />
+					<textbox id="textboxDescription" rows="5" cols="40"
+						mold="rounded" width="200px" />
+				</row>
+			</rows>
+		</grid>
+		<div align="left">
+			<button id="saveButton" label="save" />
+		</div>
+	</groupbox>
+	<hbox style="margin-top:20px">
+		<vbox>
+			<label id="modelLabel" />
+			<label id="makeLabel" />
+			<label id="priceLabel" />
+			<label id="descriptionLabel" />
+		</vbox>
+	</hbox>
+</window>
+
